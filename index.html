@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cleryl Skin Check</title>
+<style>
+:root{--bg:#fff;--ink:#2a14c4;--mut:#7068d8;--line:#e6e3fb;--btn:#361de6;--btn-ink:#fff;--sel:#361de6;--sel-ink:#fff;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow:hidden}
+.app{position:relative;height:100%;max-width:520px;margin:0 auto;display:flex;flex-direction:column}
+.mq{position:relative;z-index:3;background:var(--btn);color:var(--btn-ink);overflow:hidden;white-space:nowrap;font-family:var(--mono);font-size:10px;letter-spacing:.2em;padding:7px 0}
+.mq div{display:inline-block;animation:mq 28s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+.lab{font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--mut)}
+.quote{font-size:15px;line-height:1.5;color:var(--mut);border-left:2px solid var(--btn);padding-left:14px;margin:0 0 28px;max-width:34ch}
+.amb{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.amb i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;background:var(--blob);filter:blur(80px);opacity:.7;animation:drift 18s ease-in-out infinite alternate}
+.amb i:nth-child(1){top:-30vmax;left:-20vmax}
+.amb i:nth-child(2){bottom:-35vmax;right:-25vmax;animation-duration:24s;animation-direction:alternate-reverse}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.15)}}
+header{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:14px 20px 0;height:56px}
+.logo{height:16px;width:auto;display:block}
+.back{width:40px;height:40px;margin-left:-10px;border:0;background:none;color:var(--ink);font-size:22px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s}
+.back.on{opacity:1;pointer-events:auto}
+.pg{position:relative;z-index:2;height:2px;margin:10px 20px 0;background:var(--line);border-radius:2px;overflow:hidden}
+.pg i{display:block;height:100%;width:0;background:var(--btn);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.stage{position:relative;z-index:1;flex:1;overflow:hidden}
+.scr{position:absolute;inset:0;overflow-y:auto;padding:6vh 24px 32px;display:flex;flex-direction:column;opacity:0;transition:opacity .4s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.scr.pf{transform:translateX(48px)}.scr.pb{transform:translateX(-48px)}
+.scr.of{opacity:0;transform:translateX(-48px)}.scr.ob{opacity:0;transform:translateX(48px)}
+.scr.on{opacity:1;transform:none}
+.k{font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--mut);text-transform:uppercase;margin-bottom:14px}
+h1{font-size:clamp(24px,6.8vw,30px);line-height:1.15;letter-spacing:-.015em;margin:0 0 16px;font-weight:650}
+h2{font-size:clamp(26px,7.4vw,33px);line-height:1.15;letter-spacing:-.015em;margin:0 0 26px;font-weight:650}
+.lead{color:var(--mut);font-size:17px;line-height:1.5;margin:0 0 28px;max-width:34ch}
+.sp{flex:1}
+.row{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);color:var(--ink);font:inherit;font-size:18px;padding:18px 6px;cursor:pointer;border-radius:0;transition:background .25s,color .25s,padding .25s,border-radius .25s}
+.row:last-of-type{border-bottom:1px solid var(--line)}
+.row b{font-family:var(--mono);font-weight:500;color:var(--mut);font-size:13px;min-width:20px;font-variant-numeric:tabular-nums}
+.row:active,.row.sel{background:var(--sel);color:var(--sel-ink);padding-left:16px;border-radius:14px;border-color:transparent}
+.row.sel b{color:inherit;opacity:.6}
+.cta{box-shadow:0 8px 24px -10px var(--btn);display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;border-radius:999px;background:var(--btn);color:var(--btn-ink);font:inherit;font-size:17px;font-weight:650;padding:18px;cursor:pointer;text-decoration:none;transition:transform .2s,opacity .3s}
+.cta:active{transform:scale(.97)}
+.cta.alt{background:var(--bg);color:var(--btn);border:1.5px solid var(--btn);box-shadow:none;margin-top:10px;padding:15px}
+.cta[disabled]{opacity:.25;pointer-events:none}
+.ghost{background:none;border:0;color:var(--mut);font:inherit;font-size:14px;padding:14px;cursor:pointer;text-decoration:underline}
+.name{width:100%;border:0;border-bottom:2px solid var(--btn);background:none;color:var(--ink);font:inherit;font-size:30px;font-weight:600;padding:8px 0;border-radius:0;outline:none;margin-bottom:14px}
+.name::placeholder{color:var(--line)}
+.small{font-size:12px;color:var(--mut);line-height:1.5;margin:0 0 22px}
+.load{align-items:center;justify-content:center;text-align:center}
+.dots{display:flex;gap:8px;margin-bottom:22px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--btn);animation:b 1s infinite ease-in-out}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,80%,100%{transform:scale(.5);opacity:.3}40%{transform:scale(1);opacity:1}}
+.rise{opacity:0;transform:translateY(18px);animation:up .7s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes up{to{opacity:1;transform:none}}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tag{border:1px solid var(--btn);color:var(--btn);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600}
+.prod{padding:18px 0;border-top:1px solid var(--line)}
+.prod small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--mut);text-transform:uppercase;margin-bottom:4px}
+.prod b{display:block;font-size:19px;margin-bottom:4px}
+.prod span{color:var(--mut);font-size:15px;line-height:1.5}
+.bar{padding:10px 24px calc(14px + env(safe-area-inset-bottom,0px));position:relative;z-index:3;display:none;background:linear-gradient(to top,var(--bg) 70%,transparent)}
+.bar.on{display:block}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rise{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header><button class="back" id="back" aria-label="Kembali">←</button><img class="logo" alt="CLERYL" src="data:image/png;base64,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"><span style="width:30px"></span></header>
+  <div class="pg"><i id="pg"></i></div>
+  <div class="stage" id="stage"></div>
+  <div class="bar" id="bar"><a class="cta" id="wa" href="#" target="_blank" rel="noopener">Konsultasi dengan skin expert</a><a class="cta alt" href="https://www.instagram.com/cleryl_laboratories/" target="_blank" rel="noopener">Follow us to get to know more</a></div>
+</div>
+<script>
+// Ganti dengan nomor WhatsApp skin expert (format internasional, tanpa + atau spasi)
+var WA_NUMBER="6287759394067";
+// Tempel URL Web App Google Apps Script yang berakhiran /exec setelah deployment.
+var GOOGLE_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxJVwGOsrWfdA-Mrt10pUqQkGqNauNt_vJOXquupIK6EJDwnKAhqD0gldi8UDFI5pKc/exec";
+var AGES=["Di bawah 25","25–34","35–44","45–54","55 ke atas"];
+var CONCERNS=[{k:"spots",t:"Bekas jerawat & noda"},{k:"tone",t:"Warna kulit tidak merata"},{k:"lines",t:"Garis halus & kekenyalan"},{k:"dry",t:"Kulit kering & dehidrasi"},{k:"acne",t:"Mudah berjerawat"}];
+var QS=[
+{q:"Sejam setelah cuci muka tanpa produk apa pun, kulitmu terasa…",o:[["Kencang dan agak kering",{dry:2}],["Nyaman, tidak kering dan tidak berminyak",{normal:2}],["Berminyak di dahi dan hidung saja",{combo:2}],["Berminyak di seluruh wajah",{oily:2}]]},
+{q:"Menjelang siang, wajahmu biasanya…",o:[["Kusam atau terasa tertarik",{dry:1}],["Masih segar",{normal:1}],["Mengilap di T-zone, pipi normal",{combo:1}],["Mengilap merata",{oily:1}]]},
+{q:"Pori-pori wajahmu…",o:[["Kecil, hampir tidak terlihat",{dry:1,normal:1}],["Terlihat di hidung dan sekitarnya",{combo:1}],["Besar dan terlihat di banyak area",{oily:1}],["Tidak yakin",{}]]},
+{q:"Saat mencoba produk baru, kulitmu…",o:[["Jarang bereaksi",{}],["Kadang merah atau perih",{sens:1}],["Sering merah, perih, atau gatal",{sens:2}]]},
+{q:"Seberapa sering kamu berjerawat?",o:[["Jarang",{}],["Kadang, saat stres atau menjelang haid",{acne:1}],["Sering",{acne:2}]]}];
+var TYPES={dry:["Kering","Kulit cenderung kurang lembap. Prioritaskan hidrasi dan menjaga skin barrier."],normal:["Normal","Kulit relatif seimbang. Fokus pada menjaga hidrasi dan merawat concern spesifikmu."],combo:["Kombinasi","T-zone cenderung berminyak, area pipi normal. Pilih tekstur ringan yang tetap melembapkan."],oily:["Berminyak","Produksi minyak cenderung tinggi. Pilih tekstur ringan dan non-comedogenic."]};
+var SERUM={n:"Phyto Cell Overnight Treatment Serum",d:"Baolift, ceramide, dan natural oils. Membantu kulit terlihat lebih kencang, garis halus berkurang, dan lebih terhidrasi. Langkah terakhir rutinitas malam."};
+var CREAM={n:"Even Tone Perfecting Cream",d:"Green Tea Biotechnology dan 10% Azeclair. Membantu meratakan warna kulit dan memudarkan tampilan noda bekas jerawat. Pelembap non-comedogenic, pagi dan malam."};
+var REC={spots:[CREAM,SERUM],tone:[CREAM,SERUM],lines:[SERUM,CREAM],dry:[SERUM,CREAM],acne:[CREAM,SERUM]};
+// 0 intro, 1 nama, 2 usia, 3 concern, 4-8 tes, 9 loading, 10 hasil
+var S={name:"",age:"",concern:null,ans:[]},cur=null,idx=-1,busy=false;
+var $=function(i){return document.getElementById(i)};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+
+function build(i){
+  var s=el("section","scr");
+  if(i===0){
+    s.appendChild(el("div","k","CLERYL Skin Test_"));
+    s.appendChild(el("h1","","Kenali kulitmu."));
+    s.appendChild(el("p","quote","Formulated with acne-prone skin in mind, innovated for all skin types."));
+    s.appendChild(el("p","lead","Delapan pertanyaan singkat, kurang dari satu menit. Dapatkan panduan awal dan rekomendasi dari skin expert Cleryl."));
+    s.appendChild(el("div","sp"));
+    var b=el("button","cta","Mulai →");b.onclick=function(){go(1)};s.appendChild(b);
+  }else if(i===1){
+    s.appendChild(el("div","k","01 · Kenalan dulu"));
+    s.appendChild(el("h2","","Siapa namamu?"));
+    var inp=el("input","name");inp.placeholder="Nama kamu";inp.autocomplete="given-name";inp.value=S.name;s.appendChild(inp);
+    s.appendChild(el("p","small","Nama dan jawabanmu akan disimpan di Google Sheets milik Cleryl untuk rekomendasi dan follow-up skincare."));
+    s.appendChild(el("div","sp"));
+    var n=el("button","cta","Lanjut →");n.disabled=!S.name;
+    inp.oninput=function(){S.name=inp.value.trim();n.disabled=!S.name};
+    inp.onkeydown=function(e){if(e.key==="Enter"&&S.name){inp.blur();go(2)}};
+    n.onclick=function(){go(2)};s.appendChild(n);
+    setTimeout(function(){if(window.innerWidth>700)inp.focus()},500);
+  }else if(i===2){
+    s.appendChild(el("div","k","02 · Usia"));s.appendChild(el("h2","","Hai "+S.name+", usiamu berapa?"));
+    AGES.forEach(function(a,j){opt(s,a,j,S.age===a,function(){S.age=a;go(3)})});
+  }else if(i===3){
+    s.appendChild(el("div","k","03 · Fokus"));s.appendChild(el("h2","","Apa concern utama kulitmu?"));
+    CONCERNS.forEach(function(c,j){opt(s,c.t,j,S.concern&&S.concern.k===c.k,function(){S.concern=c;go(4)})});
+  }else if(i>=4&&i<=8){
+    var q=QS[i-4];
+    s.appendChild(el("div","k","0"+(i)+" · Tes kulit "+(i-3)+"/5"));s.appendChild(el("h2","",q.q));
+    q.o.forEach(function(o,j){opt(s,o[0],j,S.ans[i-4]===o[1],function(){S.ans[i-4]=o[1];go(i+1)})});
+  }else if(i===9){
+    s.classList.add("load");
+    var d=el("div","dots");d.appendChild(el("i"));d.appendChild(el("i"));d.appendChild(el("i"));s.appendChild(d);
+    s.appendChild(el("h2","","Membaca kulitmu…"));
+    setTimeout(function(){go(10)},1500);
+  }else{result(s)}
+  return s;
+}
+function opt(s,t,j,sel,fn){
+  var b=el("button","row"+(sel?" sel":""));b.appendChild(el("b","",String(j+1).padStart(2,"0")));b.appendChild(document.createTextNode(t));
+  b.onclick=function(){if(busy)return;b.classList.add("sel");busy=true;setTimeout(function(){busy=false;fn()},260)};
+  s.appendChild(b);
+}
+function getAnswerLabel(questionIndex){
+  var selected=S.ans[questionIndex];
+  if(!selected)return "";
+  var question=QS[questionIndex];
+  for(var i=0;i<question.o.length;i++){
+    if(question.o[i][1]===selected)return question.o[i][0];
+  }
+  return "";
+}
+function saveSkinCheck(sc,best,sens,acne,recommendations){
+  if(!GOOGLE_SCRIPT_URL||GOOGLE_SCRIPT_URL.indexOf("PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE")!==-1){
+    console.warn("Cleryl Skin Check belum terhubung ke Google Sheets: URL Apps Script belum diisi.");
+    return;
+  }
+  var payload={
+    submittedAt:new Date().toISOString(),
+    name:S.name,
+    age:S.age,
+    concernKey:S.concern.k,
+    concernLabel:S.concern.t,
+    answers:QS.map(function(q,i){return {question:q.q,answer:getAnswerLabel(i)}}),
+    scores:sc,
+    result:{
+      skinTypeKey:best,
+      skinTypeLabel:TYPES[best][0],
+      sensitive:sens,
+      acneProne:acne,
+      recommendations:recommendations.map(function(p){return p.n})
+    },
+    source:"CLERYL Skin Test"
+  };
+  // mode:no-cors membuat respons tidak dapat dibaca browser. Jangan tampilkan klaim sukses kepada pengguna.
+  fetch(GOOGLE_SCRIPT_URL,{
+    method:"POST",
+    mode:"no-cors",
+    headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+    body:new URLSearchParams({payload:JSON.stringify(payload)}).toString()
+  }).catch(function(err){console.error("Pengiriman data Cleryl Skin Check gagal:",err)});
+}
+
+function result(s){
+  var sc={dry:0,normal:0,combo:0,oily:0,sens:0,acne:0};
+  S.ans.forEach(function(a){for(var k in a)sc[k]+=a[k]});
+  var best="normal";["combo","oily","dry","normal"].forEach(function(k){if(sc[k]>sc[best])best=k});
+  var sens=sc.sens>=2,acne=sc.acne>=1,t=TYPES[best],d=0;
+  function r(n){n.classList.add("rise");n.style.animationDelay=(d++*0.12)+"s";s.appendChild(n);return n}
+  r(el("div","k","Hasil untuk "+S.name));
+  r(el("h1","","Kulitmu cenderung "+t[0].toLowerCase()+(sens?" dan sensitif":"")+"."));
+  var tg=el("div","tags");[ "Kulit "+t[0] ].concat(sens?["Cenderung sensitif"]:[],acne?["Cenderung berjerawat"]:[],[S.concern.t]).forEach(function(x){tg.appendChild(el("span","tag",x))});r(tg);
+  r(el("p","lead",t[1]+(sens?" Karena kulitmu cenderung sensitif, kenalkan produk baru satu per satu.":"")));
+  var recommendations=REC[S.concern.k];
+  recommendations.forEach(function(p,i){var w=el("div","prod");w.appendChild(el("small","",i===0?"Untuk concern utamamu":"Pendamping"));w.appendChild(el("b","",p.n));w.appendChild(el("span","",p.d));r(w)});
+  saveSkinCheck(sc,best,sens,acne,recommendations);
+  var c=el("div","prod");c.appendChild(el("small","","Real Skin Club"));c.appendChild(el("span","","Komunitas Cleryl untuk belajar dan berbagi soal kulit dan wellness. Tanyakan ke tim kami cara bergabung."));r(c);
+  r(el("p","small","Hasil ini panduan awal dari jawabanmu, bukan diagnosis medis. Semua produk Cleryl non-comedogenic dan dikembangkan dengan kulit acne-prone sebagai acuan."));
+  var g=el("button","ghost","Ulangi tes");g.onclick=function(){S.ans=[];go(4,"b")};r(g);
+  s.style.paddingBottom="190px";
+  var msg="Hi CLERYL Skin Expert! I just completed the CLERYL Skin Test at Jakarta Meet & Dine. I'd love to know more about my skin and which CLERYL products would be suitable for me.";
+  $("wa").href="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(msg);
+}
+function go(i,force){
+  var dir=force||(i>=idx?"f":"b"),old=cur,n=build(i);
+  n.classList.add(dir==="f"?"pf":"pb");$("stage").appendChild(n);void n.offsetWidth;
+  n.classList.remove("pf","pb");n.classList.add("on");
+  if(old){old.classList.remove("on");old.classList.add(dir==="f"?"of":"ob");setTimeout(function(){old.remove()},520)}
+  cur=n;idx=i;
+  $("pg").style.width=(i<=0?0:i>=9?100:((i-1)/8)*100+6)+"%";
+  $("back").classList.toggle("on",i>=1&&i<=8);
+  $("bar").classList.toggle("on",i===10);
+}
+$("back").onclick=function(){if(idx>=1&&idx<=8&&!busy)go(idx-1,"b")};
+go(0);
+</script>
+</body>
+</html>
